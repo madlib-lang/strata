@@ -1,0 +1,15 @@
+import { ifElse, always } from 'Function'
+import { isEmpty } from 'String'
+import { join, concat } from "List"
+
+joint :: String -> String -> String -> String
+export joint = (delimiter, left, right) =>
+  ifElse(
+    isEmpty,
+    always(left),
+    pipe(
+      of,
+      concat([left]),
+      join(delimiter)
+    )
+  )(right)

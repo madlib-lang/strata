@@ -1,0 +1,28 @@
+import { join, concat } from "List"
+
+import { joint } from './utils'
+
+blockElement :: String -> String -> String
+export blockElement = (block, el) => joint('__', block, el)
+
+blockModifier :: String -> String -> String
+export blockModifier = (block, mod) => joint('--', block, mod)
+
+blockModifiers :: String -> List String -> String
+export blockModifiers = (block, mods) => pipe(
+  map(blockModifier(block)),
+  concat([block]),
+  join(' ')
+)(mods)
+
+blockElementModifiers :: String -> String -> List String -> String
+export blockElementModifiers = (block, el, mods) => pipe(
+  blockElement($, el),
+  blockModifiers($, mods)
+)(block)
+
+export strata = (b) => ({
+  e: blockElement(b),
+  em: blockElementModifiers(b),
+  m: blockElementModifiers(b, '')
+})

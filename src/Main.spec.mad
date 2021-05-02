@@ -1,0 +1,152 @@
+import { assertEquals, test } from 'TestTools'
+import { joint } from './utils'
+import {
+  blockElement,
+  blockModifier,
+  blockModifiers,
+  blockElementModifiers,
+  strata
+} from './Main'
+
+bEl = blockElement('block')
+bEm = blockModifier('block')
+bEms = blockModifiers('block')
+bElEms = blockElementModifiers('block')
+stratum = strata('Component')
+
+test(
+  'joint                 - a + b',
+  (_) => assertEquals(joint('*', 'a', 'b'), 'a*b')
+)
+
+test(
+  'joint                 - a + ""',
+  (_) => assertEquals(joint('*', 'a', ''), 'a')
+)
+
+test(
+  'joint morphism        - "--" + a + ""',
+  (_) => assertEquals(joint('--', 'block', ''), 'block')
+)
+
+
+test(
+  'blockElement          - block + element',
+  (_) => assertEquals(
+    bEl('element'),
+    'block__element'
+  )
+)
+
+test(
+  'blockElement          - block + ""',
+  (_) => assertEquals(
+    bEl(''),
+    'block'
+  )
+)
+
+test(
+  'blockModifier         - block + mod',
+  (_) => assertEquals(
+    bEm('mod'),
+    'block--mod'
+  )
+)
+
+test(
+  'blockModifier         - block + ""',
+  (_) => assertEquals(
+    bEm(''),
+    'block'
+  )
+)
+
+test(
+  'blockModifiers        - block + [mod, bod]',
+  (_) => assertEquals(
+    bEms(['mod', 'bod']),
+    'block block--mod block--bod'
+  )
+)
+
+test(
+  'blockModifiers        - block + []',
+  (_) => assertEquals(
+    bEms([]),
+    'block'
+  )
+)
+
+test(
+  'blockElementModifiers - block + element + [mod, bod]',
+  (_) => assertEquals(
+    bElEms('element', ['mod', 'bod']),
+    'block__element block__element--mod block__element--bod'
+  )
+)
+test(
+  'blockElementModifiers - block + "" + [mod, bod]',
+  (_) => assertEquals(
+    bElEms('', ['mod', 'bod']),
+    'block block--mod block--bod'
+  )
+)
+
+test(
+  'blockElementModifiers - block + element',
+  (_) => assertEquals(
+    bElEms('element', []),
+    'block__element'
+  )
+)
+
+test(
+  'strata.e              - Component + header',
+  (_) => assertEquals(
+    stratum.e('header'),
+    'Component__header'
+  )
+)
+
+test(
+  'strata.e              - Component + ""',
+  (_) => assertEquals(
+    stratum.e('header'),
+    'Component__header'
+  )
+)
+
+test(
+  'strata.em             - Component + header + [x, y, z]',
+  (_) => assertEquals(
+    stratum.em('header', ['x', 'y', 'z']),
+    'Component__header Component__header--x Component__header--y Component__header--z'
+  )
+)
+
+test(
+  'strata.em             - Component + "" + [x, y, z]',
+  (_) => assertEquals(
+    stratum.em('', ['x', 'y', 'z']),
+    'Component Component--x Component--y Component--z'
+  )
+)
+
+test(
+  'strata.m              - Component + [x, y, z]',
+  (_) => assertEquals(
+    stratum.m(['x', 'y', 'z']),
+    'Component Component--x Component--y Component--z'
+  )
+)
+
+test(
+  'strata.m              - Component + []',
+  (_) => assertEquals(
+    stratum.m([]),
+    'Component'
+  )
+)
+
+
