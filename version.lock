@@ -1,0 +1,17 @@
+{
+  "buildHash": "1ed29396eb30b748fdf4ec2d57a032a6",
+  "versionHash": "25e64aa754c310d45c1e084d574c1bb0",
+  "api": {
+    "apiNames": {
+      "blockElementModifiers": "String -> String -> List String -> String",
+      "blockElement": "String -> String -> String",
+      "blockModifiers": "String -> List String -> String",
+      "blockModifier": "String -> String -> String",
+      "strata": "String -> { e :: String -> String, em :: String -> List String -> String, m :: List String -> String }"
+    },
+    "apiInstances": [],
+    "apiAliases": {},
+    "apiTypes": {},
+    "apiInterfaces": {}
+  }
+}
