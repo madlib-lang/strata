@@ -1,12 +1,12 @@
 import { assertEquals, test } from "Test"
-import { joint } from "./Utils"
+import { joint } from "@/Utils"
 import {
   blockElement,
   blockModifier,
   blockModifiers,
   blockElementModifiers,
   strata
-} from "./Main"
+} from "@/Main"
 
 bEl = blockElement("block")
 bEm = blockModifier("block")
