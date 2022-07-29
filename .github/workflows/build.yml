@@ -14,5 +14,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ env.node-version }}
-      - run: npm install -g @madlib-lang/madlib
+      - run: npm install -g @madlib-lang/madlib@0.13.0
+      - run: madlib -v
       - run: madlib test
