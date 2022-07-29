@@ -6,7 +6,7 @@ env:
 name: build
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,9 +15,4 @@ jobs:
         with:
           node-version: ${{ env.node-version }}
       - run: npm install -g @madlib-lang/madlib
-      - run: madlib test --coverage
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: .coverage/lcov.info
+      - run: madlib test
